@@ -7,7 +7,8 @@ import Text from "./Text";
 
 const styles = StyleSheet.create({
   errorText: {
-    marginTop: 5,
+    color: "#bb0000",
+    marginBottom: 8,
   },
 });
 
@@ -15,6 +16,8 @@ const FormikTextInput = ({ name, ...props }) => {
   const [field, meta, helpers] = useField(name);
 
   const showError = meta.touched && meta.error;
+
+  console.log("ERROR", showError);
 
   return (
     <React.Fragment>
