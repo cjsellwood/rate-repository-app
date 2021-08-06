@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 const AppBarTab = ({ label }) => {
   return (
     <Pressable onPress={() => {}}>
-      <Text color="appBarText" fontWeight="bold" style={styles.button}>
+      <Text color="textWhite" fontWeight="bold" style={styles.button}>
         {label}
       </Text>
     </Pressable>

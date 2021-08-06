@@ -2,9 +2,11 @@ const theme = {
   colors: {
     textPrimary: "#24292e",
     textSecondary: "#586069",
+    textWhite: "#ffffff",
     primary: "#0366d6",
     appBar: "#24292e",
-    appBarText: "#ffffff"
+    mainBackground: "#e1e4e8",
+    listItem: "#ffffff",
   },
   fontSizes: {
     body: 14,
