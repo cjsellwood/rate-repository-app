@@ -17,8 +17,6 @@ const FormikTextInput = ({ name, ...props }) => {
 
   const showError = meta.touched && meta.error;
 
-  console.log("ERROR", showError);
-
   return (
     <React.Fragment>
       <TextInput

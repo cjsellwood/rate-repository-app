@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     borderColor: "#999999",
-    marginBottom: 4,
+    marginBottom: 8,
   },
   button: {
     backgroundColor: theme.colors.primary,
