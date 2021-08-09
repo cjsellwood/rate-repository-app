@@ -31,12 +31,15 @@ const AppBar = () => {
       <ScrollView horizontal={true}>
         <AppBarTab label="Repositories" link="/" />
         {authorized ? (
-          <AppBarTab label="Create Review" link="/CreateReview" />
-        ) : null}
-        {authorized ? (
-          <AppBarTab label="Sign Out" link="/SignOut" />
+          <React.Fragment>
+            <AppBarTab label="Create Review" link="/CreateReview" />
+            <AppBarTab label="Sign Out" link="/SignOut" />
+          </React.Fragment>
         ) : (
-          <AppBarTab label="Sign In" link="/SignIn" />
+          <React.Fragment>
+            <AppBarTab label="Sign In" link="/SignIn" />
+            <AppBarTab label="Sign Up" link="/SignUp" />
+          </React.Fragment>
         )}
       </ScrollView>
     </View>
