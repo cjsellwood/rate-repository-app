@@ -27,7 +27,7 @@ const roundNumber = (number) => {
 
 const BottomBar = ({ item }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="bottom-bar">
       <View style={styles.statContainer}>
         <Text fontWeight="bold">{roundNumber(item.stargazersCount)}</Text>
         <Text>Stars</Text>
