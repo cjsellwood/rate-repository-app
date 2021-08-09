@@ -7,6 +7,7 @@ import theme from "../theme";
 import SignIn from "./SignIn";
 import SignOut from "./SignOut";
 import SingleRepository from "./SingleRepository";
+import CreateReview from "./CreateReview";
 
 const styles = StyleSheet.create({
   container: {
@@ -32,6 +33,9 @@ const Main = () => {
         </Route>
         <Route path="/repositories/:id">
           <SingleRepository />
+        </Route>
+        <Route path="/CreateReview">
+          <CreateReview />
         </Route>
         <Redirect to="/" />
       </Switch>

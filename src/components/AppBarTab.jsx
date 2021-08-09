@@ -5,7 +5,7 @@ import Text from "./Text";
 
 const styles = StyleSheet.create({
   button: {
-    padding: 15,
+    padding: 12,
   },
 });
 
