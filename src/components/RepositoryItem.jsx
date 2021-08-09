@@ -1,8 +1,9 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, Pressable } from "react-native";
 import Text from "./Text";
 import theme from "../theme";
 import BottomBar from "./BottomBar";
+import * as Linking from "expo-linking";
 
 const styles = StyleSheet.create({
   container: {
@@ -32,9 +33,21 @@ const styles = StyleSheet.create({
   description: {
     paddingTop: 5,
   },
+  linkButton: {
+    padding: 16,
+    backgroundColor: theme.colors.primary,
+    color: theme.colors.textWhite,
+    margin: 8,
+    textAlign: "center",
+    borderRadius: 5,
+  },
 });
 
 const RepositoryItem = ({ item }) => {
+  const openLink = () => {
+    Linking.openURL(item.url);
+  };
+
   return (
     <View style={styles.container} testID="repository-item">
       <View style={styles.topRow}>
@@ -51,7 +64,14 @@ const RepositoryItem = ({ item }) => {
           </Text>
         </View>
       </View>
-      <BottomBar item={item}/>
+      <BottomBar item={item} />
+      {item.url ? (
+        <Pressable onPress={openLink}>
+          <Text fontWeight="bold" style={styles.linkButton}>
+            Open in Github
+          </Text>
+        </Pressable>
+      ) : null}
     </View>
   );
 };
