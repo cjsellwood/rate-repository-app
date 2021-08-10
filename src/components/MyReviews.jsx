@@ -4,7 +4,7 @@ import ReviewItem from "./ReviewItem";
 import useMyReviews from "../hooks/useMyReviews";
 
 const MyReviews = () => {
-  const { user } = useMyReviews();
+  const { user, refetch } = useMyReviews();
 
   if (!user) {
     return null;
@@ -15,7 +15,9 @@ const MyReviews = () => {
   return (
     <FlatList
       data={reviews}
-      renderItem={({ item }) => <ReviewItem review={item} />}
+      renderItem={({ item }) => (
+        <ReviewItem review={item} myReviews={true} refetch={refetch} />
+      )}
       keyExtractor={({ id }) => id}
     />
   );
