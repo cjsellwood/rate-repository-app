@@ -33,6 +33,7 @@ const AppBar = () => {
         {authorized ? (
           <React.Fragment>
             <AppBarTab label="Create Review" link="/CreateReview" />
+            <AppBarTab label="My Reviews" link="/MyReviews" />
             <AppBarTab label="Sign Out" link="/SignOut" />
           </React.Fragment>
         ) : (
