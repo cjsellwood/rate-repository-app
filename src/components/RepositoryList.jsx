@@ -128,10 +128,10 @@ const RepositoryList = () => {
   const [filter, setFilter] = useState("");
   const [value] = useDebounce(filter, 500);
 
-  const { repositories } = useRepositories(order, value);
+  const { repositories, fetchMore } = useRepositories(order, value);
 
   const onEndReach = () => {
-    console.log("You have reached the end of the list");
+    fetchMore();
   };
 
   return (
