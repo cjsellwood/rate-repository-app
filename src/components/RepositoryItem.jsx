@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     padding: 10,
+    flexShrink: 1,
   },
   description: {
     paddingTop: 5,

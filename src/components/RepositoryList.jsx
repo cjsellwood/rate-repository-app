@@ -4,7 +4,8 @@ import RepositoryItem from "./RepositoryItem";
 import useRepositories from "../hooks/useRepositories";
 import { useHistory } from "react-router-native";
 import Text from "./Text";
-import { Menu, Provider } from "react-native-paper";
+import { Menu, Provider, Searchbar } from "react-native-paper";
+import { useDebounce } from "use-debounce";
 
 const styles = StyleSheet.create({
   separator: {
@@ -15,14 +16,24 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   menuItem: {},
+  filter: {
+    margin: 8,
+  },
 });
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const TopOptions = ({ order, setOrder }) => {
+const TopOptions = ({ order, setOrder, filter, setFilter }) => {
   const [visible, setVisible] = useState(false);
+
   return (
     <View>
+      <Searchbar
+        placeholder="Filter"
+        onChangeText={(value) => setFilter(value)}
+        value={filter}
+        style={styles.filter}
+      />
       <View
         style={{
           flexDirection: "row",
@@ -66,7 +77,14 @@ const TopOptions = ({ order, setOrder }) => {
   );
 };
 
-export const RepositoryListContainer = ({ repositories, order, setOrder }) => {
+export const RepositoryListContainer = ({
+  repositories,
+  order,
+  setOrder,
+  filter,
+  setFilter,
+  onEndReach,
+}) => {
   const history = useHistory();
 
   // Get the nodes from the edges array
@@ -83,7 +101,16 @@ export const RepositoryListContainer = ({ repositories, order, setOrder }) => {
       <FlatList
         data={repositoryNodes}
         ItemSeparatorComponent={ItemSeparator}
-        ListHeaderComponent={<TopOptions order={order} setOrder={setOrder} />}
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.5}
+        ListHeaderComponent={
+          <TopOptions
+            order={order}
+            setOrder={setOrder}
+            filter={filter}
+            setFilter={setFilter}
+          />
+        }
         renderItem={({ item }) => {
           return (
             <Pressable onPress={() => toRepository(item.id)}>
@@ -98,13 +125,23 @@ export const RepositoryListContainer = ({ repositories, order, setOrder }) => {
 
 const RepositoryList = () => {
   const [order, setOrder] = useState("Latest Repositories");
-  const { repositories } = useRepositories(order);
+  const [filter, setFilter] = useState("");
+  const [value] = useDebounce(filter, 500);
+
+  const { repositories } = useRepositories(order, value);
+
+  const onEndReach = () => {
+    console.log("You have reached the end of the list");
+  };
 
   return (
     <RepositoryListContainer
       repositories={repositories}
       order={order}
       setOrder={setOrder}
+      filter={filter}
+      setFilter={setFilter}
+      onEndReach={onEndReach}
     />
   );
 };

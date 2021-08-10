@@ -2,10 +2,12 @@ import { useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
 import { GET_REPOSITORIES } from "../graphql/queries";
 
-const useRepositories = (order) => {
+const useRepositories = (order, filter) => {
   const [repositories, setRepositories] = useState();
 
-  let variables = {};
+  let variables = {
+    searchKeyword: filter,
+  };
   switch (order) {
     case "Latest repositories":
       variables.orderBy = "CREATED_AT";
